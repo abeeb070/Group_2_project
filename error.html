@@ -1,0 +1,2110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080d1b">
+  <meta name="description" content="Meet Group 2 — 20 Computer Engineering students building, learning and creating together.">
+  <title>Group 2 | Computer Engineering</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #080d1b;
+      --panel: rgba(17, 26, 48, .78);
+      --text: #f4f6ff;
+      --muted: #9ba8c4;
+      --line: rgba(177, 194, 235, .13);
+      --cyan: #6ee7f9;
+      --violet: #a78bfa;
+      --pink: #f0abfc;
+      --green: #8be9bd;
+      --shadow: 0 22px 70px rgba(0,0,0,.28);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
+    body {
+      min-height: 100vh;
+      color: var(--text);
+      background:
+        radial-gradient(ellipse at 12% 8%, rgba(93,74,190,.20), transparent 34%),
+        radial-gradient(ellipse at 88% 24%, rgba(22,166,190,.13), transparent 30%),
+        radial-gradient(ellipse at 55% 90%, rgba(140,80,190,.12), transparent 35%),
+        var(--bg);
+      font-family: "DM Sans", sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      opacity: .15;
+      background-image:
+        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+      background-size: 54px 54px;
+    }
+
+    body.modal-open {
+      overflow: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, input {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .container {
+      width: min(1160px, calc(100% - 40px));
+      margin: auto;
+    }
+
+    h1, h2, h3 {
+      font-family: "Space Grotesk", sans-serif;
+      line-height: 1.1;
+    }
+
+    .gradient-text {
+      background: linear-gradient(100deg,var(--cyan),#b8a2ff 52%,var(--pink));
+      color: transparent;
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
+
+    /* NAVIGATION */
+
+    .navbar {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 100;
+      border-bottom: 1px solid var(--line);
+      background: rgba(8,13,27,.82);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav-inner {
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      font: 700 17px "Space Grotesk", sans-serif;
+    }
+
+    .brand-mark {
+      width: 37px;
+      height: 37px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      color: #08101c;
+      font-weight: 800;
+      background: linear-gradient(135deg,var(--cyan),var(--violet));
+      box-shadow: 0 0 26px rgba(110,231,249,.22);
+      transition: transform .5s ease, box-shadow .5s ease;
+    }
+
+    .brand:hover .brand-mark {
+      transform: rotate(360deg) scale(1.12);
+      box-shadow: 0 0 30px rgba(110,231,249,.5);
+    }
+
+    .brand span:last-child {
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+      transition: color .25s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--cyan);
+    }
+
+    .nav-cta {
+      padding: 10px 16px;
+      border: 1px solid rgba(110,231,249,.3);
+      border-radius: 999px;
+      color: var(--cyan);
+      font-size: 12px;
+      font-weight: 700;
+      transition: .25s;
+    }
+
+    .nav-cta:hover {
+      background: rgba(110,231,249,.1);
+      transform: translateY(-2px);
+    }
+
+    .menu-toggle {
+      display: none;
+      border: 1px solid var(--line);
+      color: var(--text);
+      background: var(--panel);
+      border-radius: 10px;
+      padding: 8px 11px;
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 710px;
+      padding: 165px 0 95px;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 8px 13px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: #c6d4f5;
+      background: rgba(255,255,255,.035);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 12px var(--green);
+    }
+
+    h1 {
+      max-width: 720px;
+      margin: 24px 0;
+      font-size: clamp(48px, 7vw, 82px);
+      letter-spacing: -4px;
+    }
+
+    .hero-copy {
+      max-width: 590px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.85;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 13px;
+      flex-wrap: wrap;
+      margin-top: 32px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 13px 19px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 700;
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(110,231,249,.2);
+    }
+
+    .btn-primary {
+      color: #09111e;
+      background: linear-gradient(110deg,var(--cyan),#b4a1ff);
+      box-shadow: 0 10px 28px rgba(110,231,249,.16);
+    }
+
+    .btn-secondary {
+      border: 1px solid var(--line);
+      color: var(--text);
+      background: rgba(255,255,255,.035);
+    }
+
+    /* HERO GRAPHIC */
+
+    .hero-visual {
+      min-height: 390px;
+      display: grid;
+      place-items: center;
+      position: relative;
+    }
+
+    .orbital {
+      width: 310px;
+      height: 310px;
+      border: 1px solid rgba(166,183,235,.23);
+      border-radius: 50%;
+      position: absolute;
+      animation: spin 24s linear infinite;
+    }
+
+    .orbital::before,
+    .orbital::after {
+      content: "";
+      position: absolute;
+      border: 1px solid rgba(166,183,235,.15);
+      border-radius: 50%;
+      inset: 28px -25px;
+      transform: rotate(58deg);
+    }
+
+    .orbital::after {
+      inset: 55px -40px;
+      transform: rotate(-58deg);
+    }
+
+    .orbit-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      position: absolute;
+      top: 28px;
+      left: 49px;
+      background: var(--cyan);
+      box-shadow: 0 0 22px var(--cyan);
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .core-card {
+      width: 230px;
+      height: 230px;
+      border: 1px solid rgba(255,255,255,.22);
+      border-radius: 35px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      background: linear-gradient(145deg,rgba(110,231,249,.14),rgba(167,139,250,.16) 55%,rgba(240,171,252,.10));
+      box-shadow: 0 0 90px rgba(126,113,240,.18),inset 0 1px rgba(255,255,255,.16);
+      backdrop-filter: blur(15px);
+      transform: rotate(-7deg);
+      animation: float 6s ease-in-out infinite;
+      transition: box-shadow .4s ease;
+    }
+
+    .core-card:hover {
+      box-shadow: 0 0 100px rgba(110,231,249,.4);
+    }
+
+    .core-card strong {
+      font: 700 67px "Space Grotesk";
+      letter-spacing: -5px;
+    }
+
+    .core-card span {
+      color: #d3dcf3;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+    }
+
+    @keyframes float {
+      50% { transform: translateY(-13px) rotate(-3deg); }
+    }
+
+    .floating-tag {
+      position: absolute;
+      padding: 10px 13px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: rgba(17,26,48,.8);
+      color: #dce6ff;
+      font-size: 11px;
+      font-weight: 700;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+      transition: transform .45s ease, box-shadow .45s ease, border-color .45s ease;
+    }
+
+    .tag-one { top: 45px; right: 0; }
+    .tag-two { bottom: 48px; left: 0; }
+    .tag-three { bottom: 10px; right: 15px; color: var(--green); }
+
+    .floating-tag:hover {
+      transform: translateY(-10px) rotate(-7deg) scale(1.13);
+      border-color: var(--cyan);
+      box-shadow: 0 15px 30px rgba(110,231,249,.22);
+    }
+
+    .tag-two:hover {
+      transform: translateY(-10px) rotate(7deg) scale(1.13);
+    }
+
+    /* STATISTICS */
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 14px;
+      margin-top: 65px;
+      perspective: 1000px;
+    }
+
+    .stat {
+      padding: 18px 20px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255,255,255,.025);
+      transition: transform .5s ease, border-color .4s ease, box-shadow .5s ease;
+    }
+
+    .stat strong {
+      display: block;
+      font: 700 25px "Space Grotesk";
+      transition: transform .4s ease, color .4s ease;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .stat:hover {
+      transform: translateY(-11px) rotateX(9deg) rotateY(-7deg) scale(1.06);
+      border-color: var(--cyan);
+      box-shadow: 0 18px 38px rgba(110,231,249,.2);
+    }
+
+    .stat:hover strong {
+      transform: scale(1.2);
+      color: var(--cyan);
+    }
+
+    section {
+      padding: 100px 0;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 25px;
+      margin-bottom: 34px;
+    }
+
+    .section-kicker {
+      color: var(--cyan);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .section-head h2 {
+      margin-top: 10px;
+      font-size: clamp(32px,4vw,48px);
+      letter-spacing: -1.8px;
+    }
+
+    .section-head p {
+      max-width: 410px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    /* TEAM SEARCH */
+
+    .team-tools {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+
+    .search-wrap {
+      position: relative;
+      width: min(360px,100%);
+    }
+
+    .search-wrap span {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+    }
+
+    .search-wrap input {
+      width: 100%;
+      padding: 13px 15px 13px 42px;
+      outline: none;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: rgba(255,255,255,.035);
+      color: var(--text);
+      font-size: 12px;
+      transition: border .2s, box-shadow .2s;
+    }
+
+    .search-wrap input:focus {
+      border-color: rgba(110,231,249,.55);
+      box-shadow: 0 0 0 3px rgba(110,231,249,.08);
+    }
+
+    .team-count {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    /* TEAM CARDS */
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 28px;
+      perspective: 1200px;
+    }
+
+    .member-card {
+      min-width: 0;
+      position: relative;
+      overflow: hidden;
+      padding: 24px 20px 22px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: linear-gradient(145deg,rgba(23,34,60,.88),rgba(13,21,39,.82));
+      transform-style: preserve-3d;
+      transition:
+        transform .6s cubic-bezier(.2,.8,.2,1),
+        border-color .45s ease,
+        box-shadow .5s ease;
+    }
+
+    .member-card::before {
+      content: "";
+      position: absolute;
+      width: 140px;
+      height: 140px;
+      top: -80px;
+      right: -65px;
+      border-radius: 50%;
+      background: rgba(110,231,249,.2);
+      filter: blur(25px);
+      transition: .5s ease;
+      pointer-events: none;
+    }
+
+    .member-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: linear-gradient(120deg,transparent 25%,rgba(255,255,255,.09) 50%,transparent 75%);
+      background-size: 200% 100%;
+      background-position: 100% 0;
+      opacity: 0;
+      pointer-events: none;
+      transition: background-position .8s ease, opacity .4s ease;
+    }
+
+    .member-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .avatar {
+      width: 62px;
+      height: 62px;
+      flex: 0 0 62px;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      border-radius: 18px;
+      color: #09111e;
+      background: linear-gradient(135deg,var(--cyan),var(--violet));
+      font: 700 16px "Space Grotesk";
+      transition: transform .7s cubic-bezier(.2,.8,.2,1), box-shadow .5s ease;
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 35%;
+      display: block;
+    }
+
+    .member-number {
+      color: #7483a4;
+      font: 600 10px "Space Grotesk";
+      letter-spacing: 1px;
+    }
+
+    .member-card h3 {
+      position: relative;
+      min-height: 48px;
+      font-size: 15px;
+      line-height: 1.45;
+      overflow-wrap: anywhere;
+      transition: color .35s ease, transform .4s ease;
+    }
+
+    .matric {
+      display: block;
+      margin-top: 10px;
+      color: #b9c7e4;
+      font-size: 11px;
+      letter-spacing: .3px;
+    }
+
+    .role {
+      display: inline-flex;
+      margin-top: 14px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      color: #b9eefa;
+      background: rgba(110,231,249,.09);
+      font-size: 10px;
+      font-weight: 700;
+      transition: background .4s ease, transform .4s ease;
+    }
+
+    .role.leader {
+      color: #08101c;
+      background: linear-gradient(110deg, var(--cyan), var(--violet));
+      font-weight: 800;
+      letter-spacing: .5px;
+    }
+
+    .member-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      margin-top: 19px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .bio-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 12px;
+      border: 1px solid rgba(110,231,249,.28);
+      border-radius: 9px;
+      color: var(--cyan);
+      background: rgba(110,231,249,.07);
+      font-size: 11px;
+      font-weight: 700;
+      transition: .3s ease;
+    }
+
+    .bio-button:hover {
+      color: #08101c;
+      background: var(--cyan);
+      border-color: var(--cyan);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(110,231,249,.2);
+    }
+
+    .member-link {
+      display: inline-block;
+      color: #c9baff;
+      font-size: 11px;
+      font-weight: 700;
+      transition: transform .3s ease, color .3s ease;
+    }
+
+    .member-link:hover {
+      color: white;
+      transform: translateX(5px);
+    }
+
+    .empty-state {
+      display: none;
+      padding: 40px;
+      border: 1px dashed var(--line);
+      border-radius: 16px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* BIO POPUP */
+
+    .bio-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 500;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      background: rgba(3,7,17,.78);
+      backdrop-filter: blur(12px);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .3s ease, visibility .3s ease;
+    }
+
+    .bio-modal.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .bio-dialog {
+      width: min(520px,100%);
+      max-height: min(720px,90vh);
+      overflow-y: auto;
+      position: relative;
+      padding: 30px;
+      border: 1px solid rgba(110,231,249,.25);
+      border-radius: 24px;
+      background:
+        radial-gradient(circle at top right,rgba(110,231,249,.13),transparent 40%),
+        linear-gradient(145deg,#17233e,#0d1528);
+      box-shadow: 0 30px 100px rgba(0,0,0,.55);
+      transform: translateY(25px) scale(.96);
+      transition: transform .35s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .bio-modal.open .bio-dialog {
+      transform: translateY(0) scale(1);
+    }
+
+    .bio-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      color: var(--text);
+      background: rgba(255,255,255,.06);
+      font-size: 20px;
+      transition: .3s ease;
+    }
+
+    .bio-close:hover {
+      color: #08101c;
+      background: var(--cyan);
+      transform: rotate(90deg);
+    }
+
+    .bio-profile {
+      display: flex;
+      align-items: center;
+      gap: 17px;
+      padding-right: 35px;
+      margin-bottom: 25px;
+    }
+
+    .bio-avatar {
+      width: 86px;
+      height: 86px;
+      flex: 0 0 86px;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      border: 2px solid rgba(110,231,249,.55);
+      border-radius: 23px;
+      color: #09111e;
+      background: linear-gradient(135deg,var(--cyan),var(--violet));
+      font: 700 22px "Space Grotesk";
+      box-shadow: 0 0 28px rgba(110,231,249,.15);
+    }
+
+    .bio-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 35%;
+    }
+
+    .bio-profile h2 {
+      margin-bottom: 7px;
+      font-size: 21px;
+      line-height: 1.3;
+    }
+
+    .bio-profile p {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .bio-divider {
+      height: 1px;
+      margin: 20px 0;
+      background: var(--line);
+    }
+
+    .bio-heading {
+      margin-bottom: 10px;
+      color: var(--cyan);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.7px;
+      text-transform: uppercase;
+    }
+
+    .bio-description {
+      color: #d0d9ed;
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    .bio-coming {
+      padding: 17px;
+      border: 1px dashed rgba(167,139,250,.3);
+      border-radius: 13px;
+      color: #c4cce0;
+      background: rgba(167,139,250,.06);
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .bio-portfolio {
+      display: inline-flex;
+      margin-top: 20px;
+      padding: 10px 14px;
+      border: 1px solid rgba(110,231,249,.3);
+      border-radius: 10px;
+      color: var(--cyan);
+      font-size: 12px;
+      font-weight: 700;
+      transition: .3s ease;
+    }
+
+    .bio-portfolio:hover {
+      color: #08101c;
+      background: var(--cyan);
+      transform: translateY(-3px);
+    }
+
+    /* PROJECTS */
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 24px;
+      perspective: 1200px;
+    }
+
+    .project-card {
+      overflow: hidden;
+      position: relative;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: rgba(17,26,48,.78);
+      transform-style: preserve-3d;
+      transition:
+        transform .6s cubic-bezier(.2,.8,.2,1),
+        border-color .45s ease,
+        box-shadow .5s ease;
+    }
+
+    .project-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      border-radius: inherit;
+      background: linear-gradient(120deg,transparent 25%,rgba(255,255,255,.08) 50%,transparent 75%);
+      background-size: 200% 100%;
+      background-position: 100% 0;
+      opacity: 0;
+      transition: background-position .8s ease, opacity .4s ease;
+    }
+
+    .project-art {
+      height: 175px;
+      display: grid;
+      place-items: center;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg,rgba(42,72,118,.8),rgba(88,52,132,.8));
+    }
+
+    .project-art::before,
+    .project-art::after {
+      content: "";
+      position: absolute;
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 50%;
+      width: 190px;
+      height: 190px;
+      transform: rotate(35deg) scaleX(1.6);
+      transition: transform .7s ease;
+    }
+
+    .project-art::after {
+      width: 130px;
+      height: 130px;
+      transform: rotate(-35deg) scaleX(1.5);
+    }
+
+    .project-symbol {
+      z-index: 1;
+      font-size: 55px;
+      filter: drop-shadow(0 10px 20px rgba(0,0,0,.3));
+      transition: transform .7s cubic-bezier(.2,.8,.2,1), filter .5s ease;
+    }
+
+    .project-card:nth-child(3n+2) .project-art {
+      background: linear-gradient(135deg,rgba(25,106,119,.85),rgba(73,69,145,.85));
+    }
+
+    .project-card:nth-child(3n) .project-art {
+      background: linear-gradient(135deg,rgba(118,64,112,.85),rgba(45,65,118,.85));
+    }
+
+    .project-body {
+      padding: 22px;
+    }
+
+    .project-type {
+      color: var(--cyan);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .project-body h3 {
+      margin: 9px 0;
+      font-size: 19px;
+      transition: color .35s ease, transform .35s ease;
+    }
+
+    .project-body p {
+      min-height: 50px;
+      color: #bdc9e2;
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .project-creator {
+      display: block;
+      margin-top: 12px;
+      color: #c9baff;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .project-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 18px;
+    }
+
+    .project-links a {
+      padding: 8px 11px;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      color: #dce8ff;
+      font-size: 10px;
+      font-weight: 700;
+      transition: .3s ease;
+    }
+
+    .project-links a:first-child {
+      border-color: rgba(110,231,249,.3);
+      color: var(--cyan);
+    }
+
+    .project-links a:hover {
+      background: rgba(110,231,249,.13);
+      transform: translateY(-4px) scale(1.05);
+      border-color: var(--cyan);
+      box-shadow: 0 7px 18px rgba(110,231,249,.15);
+    }
+
+    /* ABOUT */
+
+    .about-panel {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 35px;
+      align-items: center;
+      padding: 42px;
+      border: 1px solid var(--line);
+      border-radius: 25px;
+      background: linear-gradient(120deg,rgba(110,231,249,.07),rgba(167,139,250,.08),rgba(255,255,255,.025));
+      transition: transform .5s ease, box-shadow .5s ease, border-color .4s ease;
+    }
+
+    .about-panel h2 {
+      margin: 12px 0 20px;
+      font-size: clamp(30px,4vw,43px);
+      letter-spacing: -1.5px;
+    }
+
+    .about-panel p {
+      color: #d0d9ed;
+      font-size: 16px;
+      line-height: 2;
+      max-width: 570px;
+    }
+
+    .values {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      perspective: 1000px;
+    }
+
+    .value {
+      padding: 21px;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      background: rgba(8,13,27,.42);
+      transition: transform .5s ease, box-shadow .5s ease, border-color .4s ease;
+    }
+
+    .value strong {
+      display: block;
+      margin-bottom: 8px;
+      font: 600 15px "Space Grotesk";
+      color: #f2f5ff;
+    }
+
+    .value span {
+      color: #bdc9e2;
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .tech-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 25px;
+    }
+
+    .tech {
+      padding: 9px 13px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: #c9d5ef;
+      background: rgba(255,255,255,.025);
+      font-size: 10px;
+      font-weight: 600;
+      transition: transform .4s ease, border-color .4s ease, box-shadow .4s ease, color .4s ease;
+    }
+
+    .tech:hover {
+      transform: translateY(-6px) rotate(-3deg) scale(1.1);
+      border-color: var(--cyan);
+      color: var(--cyan);
+      box-shadow: 0 8px 20px rgba(110,231,249,.18);
+    }
+
+    .about-panel:hover {
+      transform: perspective(1200px) translateY(-8px) rotateX(2deg);
+      border-color: rgba(110,231,249,.4);
+      box-shadow: 0 25px 60px rgba(0,0,0,.3), 0 0 25px rgba(110,231,249,.1);
+    }
+
+    .value:hover {
+      transform: perspective(900px) translateY(-11px) rotateX(10deg) rotateY(-8deg) scale(1.06);
+      border-color: var(--violet);
+      box-shadow: 0 18px 35px rgba(167,139,250,.22);
+    }
+
+    .value:hover strong {
+      color: var(--cyan);
+    }
+
+    /* FOOTER */
+
+    footer {
+      padding: 30px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .footer-inner strong {
+      color: var(--text);
+      font-family: "Space Grotesk";
+    }
+
+    .to-top {
+      color: var(--cyan);
+      transition: transform .3s ease;
+    }
+
+    .to-top:hover {
+      transform: translateY(-4px);
+    }
+
+    /* SCROLL REVEAL */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* CARD HOVER ANIMATIONS */
+
+    .member-card.reveal.visible:hover {
+      transform: perspective(1000px) translateY(-13px) rotateX(7deg) rotateY(-5deg) scale(1.035);
+      border-color: var(--cyan);
+      box-shadow:
+        0 28px 50px rgba(0,0,0,.45),
+        0 0 30px rgba(110,231,249,.3);
+    }
+
+    .member-card.reveal.visible:hover::before {
+      transform: scale(1.8);
+      background: rgba(110,231,249,.4);
+    }
+
+    .member-card.reveal.visible:hover::after {
+      opacity: 1;
+      background-position: -100% 0;
+    }
+
+    .member-card.reveal.visible:hover .avatar {
+      transform: rotateY(360deg) scale(1.12);
+      box-shadow: 0 0 30px rgba(110,231,249,.6);
+    }
+
+    .member-card.reveal.visible:hover h3 {
+      color: var(--cyan);
+      transform: translateX(4px);
+    }
+
+    .member-card.reveal.visible:hover .role {
+      background: rgba(110,231,249,.2);
+      transform: scale(1.06);
+    }
+
+    .project-card.reveal.visible:hover {
+      transform: perspective(1000px) translateY(-15px) rotateX(7deg) rotateY(-5deg) scale(1.035);
+      border-color: var(--violet);
+      box-shadow:
+        0 28px 55px rgba(0,0,0,.45),
+        0 0 35px rgba(167,139,250,.28);
+    }
+
+    .project-card.reveal.visible:hover::after {
+      opacity: 1;
+      background-position: -100% 0;
+    }
+
+    .project-card.reveal.visible:hover .project-art::before {
+      transform: rotate(110deg) scaleX(1.9) scale(1.15);
+    }
+
+    .project-card.reveal.visible:hover .project-art::after {
+      transform: rotate(70deg) scaleX(1.8) scale(1.2);
+    }
+
+    .project-card.reveal.visible:hover .project-symbol {
+      transform: rotate(360deg) scale(1.3);
+      filter: drop-shadow(0 0 20px rgba(110,231,249,.5));
+    }
+
+    .project-card.reveal.visible:hover .project-body h3 {
+      color: var(--cyan);
+      transform: translateX(5px);
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 950px) {
+      .hero-grid { gap: 25px; }
+      .team-grid { grid-template-columns: repeat(3,1fr); gap: 24px; }
+      .projects-grid { grid-template-columns: repeat(2,1fr); }
+    }
+
+    @media (max-width: 700px) {
+      .container { width: min(100% - 30px,560px); }
+      .nav-inner { height: 68px; }
+      .nav-cta { display: none; }
+      .menu-toggle { display: block; }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 68px;
+        left: 15px;
+        right: 15px;
+        padding: 18px;
+        border: 1px solid var(--line);
+        border-radius: 15px;
+        background: #101a30;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        box-shadow: var(--shadow);
+      }
+
+      .nav-links.open { display: flex; }
+      .nav-links a { display: block; padding: 12px 8px; }
+
+      .hero {
+        min-height: auto;
+        padding: 125px 0 65px;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+
+      h1 {
+        font-size: clamp(46px,13vw,68px);
+        letter-spacing: -2.8px;
+      }
+
+      .hero-visual { min-height: 320px; }
+      .orbital { width: 245px; height: 245px; }
+      .core-card { width: 185px; height: 185px; border-radius: 28px; }
+      .core-card strong { font-size: 55px; }
+
+      .tag-one { right: 2px; top: 25px; }
+      .tag-two { left: 0; bottom: 35px; }
+
+      .stats {
+        margin-top: 30px;
+        gap: 8px;
+      }
+
+      .stat { padding: 13px 11px; }
+      .stat strong { font-size: 21px; }
+
+      section { padding: 72px 0; }
+
+      .section-head { display: block; }
+      .section-head p { margin-top: 14px; }
+
+      .team-grid {
+        grid-template-columns: repeat(2,1fr);
+        gap: 18px;
+      }
+
+      .member-card { padding: 19px 16px; }
+      .member-card h3 { font-size: 13px; }
+
+      .projects-grid { grid-template-columns: 1fr; }
+
+      .about-panel {
+        grid-template-columns: 1fr;
+        padding: 25px;
+      }
+
+      .about-panel p {
+        font-size: 15px;
+        line-height: 1.9;
+      }
+
+      .values { gap: 14px; }
+
+      .footer-inner {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .bio-dialog { padding: 25px 20px; }
+    }
+
+    @media (max-width: 390px) {
+      .team-grid { grid-template-columns: 1fr; }
+
+      .team-tools {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .search-wrap { width: 100%; }
+      .stats { grid-template-columns: 1fr; }
+      .values { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (hover: none) {
+      .member-card:hover,
+      .project-card:hover,
+      .stat:hover,
+      .value:hover,
+      .about-panel:hover {
+        transform: none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a class="brand" href="#home">
+        <span class="brand-mark">G2</span>
+        <span>GROUP <span>02</span></span>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a class="active" href="#home">Home</a></li>
+        <li><a href="#team">Our Team</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#about">About Us</a></li>
+      </ul>
+
+      <a class="nav-cta" href="#team">Meet the team ↗</a>
+
+      <button class="menu-toggle" id="menuToggle"
+        aria-label="Toggle navigation" aria-expanded="false">☰</button>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="hero" id="home">
+      <div class="container">
+        <div class="hero-grid">
+
+          <div class="reveal">
+            <span class="eyebrow">Computer Engineering · Group 2</span>
+
+            <h1>
+              Different minds.<br>
+              <span class="gradient-text">One direction.</span>
+            </h1>
+
+            <p class="hero-copy">
+              We are a team of 20 Computer Engineering students learning,
+              experimenting and turning ideas into practical digital
+              experiences. This is where our people, projects and progress
+              come together.
+            </p>
+
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#team">Explore our team ↗</a>
+              <a class="btn btn-secondary" href="#projects">View projects ⌁</a>
+            </div>
+          </div>
+
+          <div class="hero-visual reveal">
+            <div class="orbital">
+              <span class="orbit-dot"></span>
+            </div>
+
+            <div class="core-card">
+              <strong>20</strong>
+              <span>MINDS · ONE TEAM</span>
+            </div>
+
+            <div class="floating-tag tag-one">✦ Creativity</div>
+            <div class="floating-tag tag-two">⌘ Engineering</div>
+            <div class="floating-tag tag-three">● Collaboration</div>
+          </div>
+
+        </div>
+
+        <div class="stats reveal">
+          <div class="stat">
+            <strong>20</strong>
+            <span>Team members</span>
+          </div>
+          <div class="stat">
+            <strong>01</strong>
+            <span>Shared goal</span>
+          </div>
+          <div class="stat">
+            <strong>∞</strong>
+            <span>Room to create</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="team">
+      <div class="container">
+
+        <div class="section-head reveal">
+          <div>
+            <span class="section-kicker">The people behind the work</span>
+            <h2>Meet the team<span class="gradient-text">.</span></h2>
+          </div>
+
+          <p>
+            Twenty individuals, different strengths and perspectives,
+            working together as one Computer Engineering team. Select
+            View Bio on any card to learn more about a member.
+          </p>
+        </div>
+
+        <div class="team-tools reveal">
+          <label class="search-wrap">
+            <span>⌕</span>
+            <input id="memberSearch" type="search"
+              placeholder="Search by name or matric number..."
+              autocomplete="off">
+          </label>
+
+          <div class="team-count" id="teamCount">
+            Showing 20 members
+          </div>
+        </div>
+
+        <div class="team-grid" id="teamGrid"></div>
+
+        <div class="empty-state" id="emptyState">
+          No team member matches that search. Try another name or matric number.
+        </div>
+      </div>
+    </section>
+
+    <!-- BIO POPUP -->
+
+    <div class="bio-modal" id="bioModal" aria-hidden="true">
+      <div class="bio-dialog" role="dialog"
+        aria-modal="true" aria-labelledby="bioName">
+
+        <button class="bio-close" id="bioClose"
+          aria-label="Close biography">×</button>
+
+        <div class="bio-profile">
+          <div class="bio-avatar" id="bioAvatar"></div>
+
+          <div>
+            <h2 id="bioName">Member Name</h2>
+            <p id="bioMatric">Matric number</p>
+            <p id="bioRole">Member</p>
+          </div>
+        </div>
+
+        <div class="bio-divider"></div>
+
+        <div class="bio-heading">About this member</div>
+        <p class="bio-description" id="bioDescription"></p>
+
+        <a class="bio-portfolio" id="bioPortfolio"
+          href="#" target="_blank" rel="noopener noreferrer"
+          hidden>Visit Portfolio ↗</a>
+      </div>
+    </div>
+
+    <!-- PROJECTS -->
+
+    <section id="projects">
+      <div class="container">
+
+        <div class="section-head reveal">
+          <div>
+            <span class="section-kicker">FEATURED GROUP CONTRIBUTIONS</span>
+            <h2>Projects created by Group 2 members<span class="gradient-text">.</span></h2>
+          </div>
+
+          <p>
+            A showcase of practical work created by members of Group 2. Every project is credited to its correct creator.
+          </p>
+        </div>
+
+        <div class="projects-grid">
+
+          <!-- Alimi Abibu Ayomide -->
+          <article class="project-card reveal">
+            <div class="project-art">
+              <span class="project-symbol">🐈</span>
+            </div>
+            <div class="project-body">
+              <span class="project-type">CSS animation</span>
+              <h3>Cat &amp; Mouse</h3>
+              <p>A playful animated scene built with web technologies.</p>
+              <span class="project-creator">Created by: Alimi Abibu Ayomide</span>
+              <div class="project-links">
+                <a href="https://abeeb070.github.io/Animation-Projects/cat_mouse.html"
+                  target="_blank" rel="noopener noreferrer">Live Demo ↗</a>
+                <a href="https://github.com/abeeb070/Animation-Projects/blob/main/cat_mouse.html"
+                  target="_blank" rel="noopener noreferrer">Source Code ↗</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card reveal">
+            <div class="project-art">
+              <span class="project-symbol">💬</span>
+            </div>
+            <div class="project-body">
+              <span class="project-type">Web animation</span>
+              <h3>Human Conversation</h3>
+              <p>An animated visual built to tell a short story through movement.</p>
+              <span class="project-creator">Created by: Alimi Abibu Ayomide</span>
+              <div class="project-links">
+                <a href="https://abeeb070.github.io/Animation-Projects/human_conversation.html"
+                  target="_blank" rel="noopener noreferrer">Live Demo ↗</a>
+                <a href="https://github.com/abeeb070/Animation-Projects/blob/main/human_conversation.html"
+                  target="_blank" rel="noopener noreferrer">Source Code ↗</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card reveal">
+            <div class="project-art">
+              <span class="project-symbol">🚘</span>
+            </div>
+            <div class="project-body">
+              <span class="project-type">CSS animation</span>
+              <h3>Rotating Car</h3>
+              <p>A motion-based car animation demonstrating transforms and timing.</p>
+              <span class="project-creator">Created by: Alimi Abibu Ayomide</span>
+              <div class="project-links">
+                <a href="https://abeeb070.github.io/Animation-Projects/rotating_car.html"
+                  target="_blank" rel="noopener noreferrer">Live Demo ↗</a>
+                <a href="https://github.com/abeeb070/Animation-Projects/blob/main/rotating_car.html"
+                  target="_blank" rel="noopener noreferrer">Source Code ↗</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Timothy Oluwaseun Israel -->
+          <article class="project-card reveal">
+            <div class="project-art">
+              <span class="project-symbol">✨</span>
+            </div>
+            <div class="project-body">
+              <span class="project-type">Web Animation</span>
+              <h3>Three Animations</h3>
+              <p>Exploring CSS animations and JavaScript tracking logic in a fun, creative way.</p>
+              <span class="project-creator">Created by: Timothy Oluwaseun Israel</span>
+              <div class="project-links">
+                <a href="https://ronryromyswisry-cmd.github.io/Three-animations-/"
+                  target="_blank" rel="noopener noreferrer">Live Demo ↗</a>
+                <a href="https://github.com/ronryromyswisry-cmd/Three-animations-"
+                  target="_blank" rel="noopener noreferrer">Source Code ↗</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Oyedokun Marvelous Fikayo -->
+          <article class="project-card reveal">
+            <div class="project-art">
+              <span class="project-symbol">🐾</span>
+            </div>
+            <div class="project-body">
+              <span class="project-type">Web Animation</span>
+              <h3>The Cat, the Mouse &amp; More</h3>
+              <p>Visually appealing animations and functional design bringing ideas to life.</p>
+              <span class="project-creator">Created by: Oyedokun Marvelous Fikayo</span>
+              <div class="project-links">
+                <a href="https://marvelous25r.github.io/CPE-505-ANIMATIONS-MARVELOUS-/"
+                  target="_blank" rel="noopener noreferrer">Live Demo ↗</a>
+                <a href="https://github.com/marvelous25r/CPE-505-ANIMATIONS-MARVELOUS-"
+                  target="_blank" rel="noopener noreferrer">Source Code ↗</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Adeyemi Oluwaseun Daniel -->
+          <article class="project-card reveal">
+            <div class="project-art">
+              <span class="project-symbol">🚗</span>
+            </div>
+            <div class="project-body">
+              <span class="project-type">Game &amp; Animation</span>
+              <h3>Rotating Car &amp; Cat Watching Mouse</h3>
+              <p>Immersive motion logic and clean code application for interactive animation.</p>
+              <span class="project-creator">Created by: Adeyemi Oluwaseun Daniel</span>
+              <div class="project-links">
+                <a href="https://adeyemiseun26.github.io/Animation-Assignment/"
+                  target="_blank" rel="noopener noreferrer">Live Demo ↗</a>
+                <a href="https://github.com/Adeyemiseun26/Animation-Assignment"
+                  target="_blank" rel="noopener noreferrer">Source Code ↗</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Olaniran Marvellous Segun -->
+          <article class="project-card reveal">
+            <div class="project-art">
+              <span class="project-symbol">🎨</span>
+            </div>
+            <div class="project-body">
+              <span class="project-type">Studio Animation</span>
+              <h3>AnimCraft Studio</h3>
+              <p>A creative showcase demonstrating programming, digital innovation, and problem-solving.</p>
+              <span class="project-creator">Created by: Olaniran Marvellous Segun</span>
+              <div class="project-links">
+                <a href="https://anonymous-host.github.io/animcraft-studio/"
+                  target="_blank" rel="noopener noreferrer">Live Demo ↗</a>
+                <a href="https://github.com/Anonymous-host/animcraft-studio/"
+                  target="_blank" rel="noopener noreferrer">Source Code ↗</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Raji Teslim Olaitan -->
+          <article class="project-card reveal">
+            <div class="project-art">
+              <span class="project-symbol">🚀</span>
+            </div>
+            <div class="project-body">
+              <span class="project-type">Web Project</span>
+              <h3>Animation Project</h3>
+              <p>Interactive web development project showcasing engineering concepts.</p>
+              <span class="project-creator">Created by: Raji Teslim Olaitan</span>
+              <div class="project-links">
+                <a href="https://cpeanimation-fawn.vercel.app/"
+                  target="_blank" rel="noopener noreferrer">Live Demo ↗</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Tella Faridah Damilola -->
+          <article class="project-card reveal">
+            <div class="project-art">
+              <span class="project-symbol">🧊</span>
+            </div>
+            <div class="project-body">
+              <span class="project-type">3D Animation</span>
+              <h3>3D Animation</h3>
+              <p>User-centred digital solution and innovative 3D visual experience.</p>
+              <span class="project-creator">Created by: Tella Faridah Damilola</span>
+              <div class="project-links">
+                <a href="https://faridahdamilola-sys.github.io/3D-Animation/"
+                  target="_blank" rel="noopener noreferrer">Live Demo ↗</a>
+                <a href="https://github.com/faridahdamilola-sys/3D-Animation"
+                  target="_blank" rel="noopener noreferrer">Source Code ↗</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Akin-Olorunfemi Oluwatimilehin Testimony -->
+          <article class="project-card reveal">
+            <div class="project-art">
+              <span class="project-symbol">🎬</span>
+            </div>
+            <div class="project-body">
+              <span class="project-type">Studio Animation</span>
+              <h3>AnimCraft Studio</h3>
+              <p>An innovative solution demonstrating interactive design and technical development.</p>
+              <span class="project-creator">Created by: Akin-Olorunfemi Oluwatimilehin Testimony</span>
+              <div class="project-links">
+                <a href="https://badboymassimo.github.io/animcraft-studio/"
+                  target="_blank" rel="noopener noreferrer">Live Demo ↗</a>
+                <a href="https://github.com/badboymassimo/animcraft-studio"
+                  target="_blank" rel="noopener noreferrer">Source Code ↗</a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+
+    <section id="about">
+      <div class="container">
+        <div class="about-panel reveal">
+
+          <div>
+            <span class="section-kicker">A little about us</span>
+            <h2>
+              Built on curiosity.<br>
+              <span class="gradient-text">Driven by teamwork.</span>
+            </h2>
+
+            <p>
+              Group 2 brings together twenty Computer Engineering students
+              with a shared interest in learning and applying technology.
+              We use this space to introduce our members, showcase practical
+              projects and document what we are capable of building together.
+              Through collaboration, creativity and continuous learning,
+              we aim to develop our skills and turn ideas into meaningful
+              digital experiences.
+            </p>
+
+            <div class="tech-row">
+              <span class="tech">Problem solving</span>
+              <span class="tech">Creativity</span>
+              <span class="tech">Teamwork</span>
+              <span class="tech">Web development</span>
+            </div>
+          </div>
+
+          <div class="values">
+            <div class="value">
+              <strong>01 · Learn</strong>
+              <span>Build knowledge through practice and exploration.</span>
+            </div>
+            <div class="value">
+              <strong>02 · Create</strong>
+              <span>Turn ideas into useful, working projects.</span>
+            </div>
+            <div class="value">
+              <strong>03 · Collaborate</strong>
+              <span>Share skills and improve as a team.</span>
+            </div>
+            <div class="value">
+              <strong>04 · Grow</strong>
+              <span>Keep improving with every new challenge.</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div><strong>GROUP 02</strong> · Computer Engineering</div>
+      <div>Built with purpose, powered by teamwork.</div>
+      <a class="to-top" href="#home">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <script>
+    const profileImage =
+      "https://abeeb070.github.io/myportfolio/Snapchat-922922314.jpg";
+
+    const alimiPortfolio =
+      "https://abeeb070.github.io/Animation-Projects/?utm_source=chatgpt.com#projects";
+
+    const members = [
+      {
+        name: "Tella Faridah Damilola",
+        matric: "CPE/2021/1068",
+        role: "GROUP LEADER",
+        isLeader: true,
+        image: "tella-faridah.jpg",
+        portfolio: "https://faridahdamilola-sys.github.io/3D-Animation/",
+        bio: "A Computer Engineering student at the Federal University Oye-Ekiti (FUOYE), an aspiring software engineer, and a UI/UX designer passionate about building innovative, user-centred digital solutions. I have practical experience in IT support, computer networking, structured cabling, CCTV systems, and software development. I am passionate about technology, problem-solving, continuous learning, and creating meaningful digital experiences."
+      },
+      {
+        name: "Alimi Abibu Ayomide",
+        matric: "CPE/2022/1029",
+        role: "Member",
+        image: profileImage,
+        portfolio: alimiPortfolio,
+        bio: "I am a Computer Engineering student with a passion for Web Development. I enjoy building clean, responsive and user-friendly websites using HTML and CSS. I am currently learning JavaScript, Git and GitHub as I continue developing my frontend development skills."
+      },
+      {
+        name: "Timothy Oluwaseun Israel",
+        matric: "CPE/2022/1111",
+        role: "Member",
+        image: "cpe2022111.jpg",
+        portfolio: "https://ronryromyswisry-cmd.github.io/Three-animations-/",
+        bio: "I am a Computer Engineering student based in Lagos with a strong interest in front-end development and design. I enjoy creating interactive web experiences, and I built this project to explore CSS animations and JavaScript tracking logic in a fun, creative way."
+      },
+      {
+        name: "Olaniyi Ayomide Victor",
+        matric: "CPE/2021/1051",
+        role: "Member",
+        image: "cpe20211051.jpg",
+        bio: "I am a Computer Engineering student at FUOYE who enjoys collaborating with others, sharing ideas and bringing projects to life."
+      },
+      {
+        name: "Ojubuyi Daniel Omotayo",
+        matric: "CPE/2021/1045",
+        role: "Member",
+        image: "cpe20211045.jpg",
+        bio: "I am a Cloud and DevSecOps Engineer with an interest in AWS, Kubernetes and secure cloud infrastructure. I focus on automation, Infrastructure as Code, CI/CD pipelines and applying DevSecOps practices to build reliable systems."
+      },
+      {
+        name: "Oyedokun Marvelous Fikayo",
+        matric: "CPE/2021/1064",
+        role: "Member",
+        image: "cpe20211064.jpg",
+        portfolio: "https://marvelous25r.github.io/CPE-505-ANIMATIONS-MARVELOUS-/",
+        bio: "I'm a Graphic Designer, Front-End Developer, and Digital Promoter, passionate about creativity, technology, and bringing ideas to life through visually appealing designs, functional websites, and strategic digital promotion."
+      },
+      {
+        name: "Adeyemi Oluwaseun Daniel",
+        matric: "CPE/2021/1074",
+        role: "Member",
+        portfolio: "https://adeyemiseun26.github.io/Animation-Assignment/",
+        bio: "I am a game developer with intermediate proficiency in C# and C++. I focus on writing clean code, creating immersive worlds and building engaging game loops."
+      },
+      {
+        name: "Olaniran Marvellous Segun",
+        matric: "CPE/2022/1070",
+        role: "Member",
+        image: "cpe20221070.jpg",
+        portfolio: "https://anonymous-host.github.io/animcraft-studio/",
+        bio: "I am a 500-level Computer Engineering student at the Federal University Oye-Ekiti (FUOYE). I am passionate about technology, programming, cybersecurity, and digital innovation. I enjoy learning new skills, exploring creative ideas, and using technology to solve problems. I am always eager to gain practical experience, improve my technical abilities, and work on projects that allow me to turn ideas into reality."
+      },
+      {
+        name: "Raji Teslim Olaitan",
+        matric: "CPE/2021/1065",
+        role: "Member",
+        image: "cpe20211065.jpg",
+        portfolio: "https://cpeanimation-fawn.vercel.app/",
+        bio: "My name is Raji Teslim Olaitan, a 500-level Computer Engineering student at the Federal University Oye-Ekiti (FUOYE)."
+      },
+      {
+        name: "Tella Faridah Damilola",
+        matric: "CPE/2021/1068",
+        role: "GROUP LEADER",
+        isLeader: true,
+        image: "tella-faridah.jpg",
+        portfolio: "https://faridahdamilola-sys.github.io/3D-Animation/",
+        bio: "A Computer Engineering student at the Federal University Oye-Ekiti (FUOYE), an aspiring software engineer, and a UI/UX designer passionate about building innovative, user-centred digital solutions. I have practical experience in IT support, computer networking, structured cabling, CCTV systems, and software development. I am passionate about technology, problem-solving, continuous learning, and creating meaningful digital experiences."
+      },
+      {
+        name: "Akin-Olorunfemi Oluwatimilehin Testimony",
+        matric: "CPE/2022/1021",
+        role: "Member",
+        image: "cpe20221021.jpg",
+        portfolio: "https://badboymassimo.github.io/animcraft-studio/",
+        bio: "My name is Akin-Olorunfemi Oluwatimilehin Testimony, a 500-level Computer Engineering student at the Federal University Oye-Ekiti (FUOYE). I have a strong interest in technology and how it can be used to create innovative solutions to everyday challenges. I enjoy learning, exploring new ideas, and developing skills that will help me grow both academically and professionally. I look forward to gaining more experience, taking on new challenges, and applying the knowledge I have acquired throughout my academic journey."
+      },
+      {
+        name: "Oluyemi Oluwanifemi Mercy",
+        matric: "CPE/2022/1079",
+        role: "Member"
+      },
+      {
+        name: "Famoroti Julius Oyindamola",
+        matric: "CPE/2022/1044",
+        role: "Member"
+      },
+      {
+        name: "Ator Chukwuebuka Emmanuel",
+        matric: "CPE/2022/1101",
+        role: "Member"
+      },
+      {
+        name: "Okechukwu Destiny Chinermerem",
+        matric: "CPE/2022/1060",
+        role: "Member"
+      },
+      {
+        name: "Duru Samuel",
+        matric: "CPE/2021/1026",
+        role: "Member"
+      },
+      {
+        name: "Popoola Samuel",
+        matric: "CPE/2022/1087",
+        role: "Member"
+      },
+      {
+        name: "Additional Member 18",
+        matric: "CPE/2022/1202",
+        role: "Member"
+      },
+      {
+        name: "Additional Member 19",
+        matric: "CPE/2022/1203",
+        role: "Member"
+      },
+      {
+        name: "Additional Member 20",
+        matric: "CPE/2022/1204",
+        role: "Member"
+      }
+    ];
+
+    const teamGrid = document.getElementById("teamGrid");
+    const searchInput = document.getElementById("memberSearch");
+    const teamCount = document.getElementById("teamCount");
+    const emptyState = document.getElementById("emptyState");
+
+    const bioModal = document.getElementById("bioModal");
+    const bioClose = document.getElementById("bioClose");
+    const bioAvatar = document.getElementById("bioAvatar");
+    const bioName = document.getElementById("bioName");
+    const bioMatric = document.getElementById("bioMatric");
+    const bioRole = document.getElementById("bioRole");
+    const bioDescription = document.getElementById("bioDescription");
+    const bioPortfolio = document.getElementById("bioPortfolio");
+
+    function initials(name) {
+      return name
+        .trim()
+        .split(/\s+/)
+        .slice(0, 2)
+        .map(part => part[0])
+        .join("")
+        .toUpperCase();
+    }
+
+    function renderMembers(list) {
+      teamGrid.innerHTML = list.map(member => {
+        const originalIndex = members.indexOf(member) + 1;
+        const memberInitials = initials(member.name);
+
+        const avatarContent = member.image
+          ? `<img src="${member.image}" alt="Profile picture of ${member.name}" loading="lazy" onerror="this.parentElement.textContent='${memberInitials}'">`
+          : memberInitials;
+
+        const portfolioLink = member.portfolio
+          ? `<a class="member-link" href="${member.portfolio}"
+               target="_blank" rel="noopener noreferrer">Portfolio ↗</a>`
+          : "";
+
+        const roleClass = member.isLeader ? "role leader" : "role";
+
+        return `
+          <article class="member-card reveal">
+            <div class="member-top">
+              <div class="avatar">
+                ${avatarContent}
+              </div>
+              <span class="member-number">
+                MEMBER ${String(originalIndex).padStart(2, "0")}
+              </span>
+            </div>
+
+            <h3>${member.name}</h3>
+            <span class="matric">${member.matric}</span>
+            <span class="${roleClass}">${member.role}</span>
+
+            <div class="member-actions">
+              <button class="bio-button" type="button"
+                data-member-index="${originalIndex - 1}">
+                View Bio ↗
+              </button>
+              ${portfolioLink}
+            </div>
+          </article>
+        `;
+      }).join("");
+
+      teamCount.textContent =
+        `Showing ${list.length} of ${members.length} members`;
+
+      emptyState.style.display = list.length ? "none" : "block";
+
+      observeReveals();
+    }
+
+    function openBio(member) {
+      bioName.textContent = member.name;
+      bioMatric.textContent = member.matric;
+      bioRole.textContent = member.role;
+      const memberInitials = initials(member.name);
+
+      if (member.image) {
+        bioAvatar.innerHTML =
+          `<img src="${member.image}" alt="Profile picture of ${member.name}" onerror="this.parentElement.textContent='${memberInitials}'">`;
+      } else {
+        bioAvatar.textContent = memberInitials;
+      }
+
+      if (member.bio) {
+        bioDescription.className = "bio-description";
+        bioDescription.textContent = member.bio;
+      } else {
+        bioDescription.className = "bio-coming";
+        bioDescription.textContent =
+          "This member's biography has not been added yet. Their introduction will appear here once they share their details.";
+      }
+
+      if (member.portfolio) {
+        bioPortfolio.href = member.portfolio;
+        bioPortfolio.hidden = false;
+      } else {
+        bioPortfolio.hidden = true;
+        bioPortfolio.removeAttribute("href");
+      }
+
+      bioModal.classList.add("open");
+      bioModal.setAttribute("aria-hidden", "false");
+      document.body.classList.add("modal-open");
+      bioClose.focus();
+    }
+
+    function closeBio() {
+      bioModal.classList.remove("open");
+      bioModal.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("modal-open");
+    }
+
+    bioClose.addEventListener("click", closeBio);
+
+    bioModal.addEventListener("click", event => {
+      if (event.target === bioModal) {
+        closeBio();
+      }
+    });
+
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape" && bioModal.classList.contains("open")) {
+        closeBio();
+      }
+    });
+
+    teamGrid.addEventListener("click", event => {
+      const button = event.target.closest(".bio-button");
+
+      if (!button) return;
+
+      const memberIndex = Number(button.dataset.memberIndex);
+      const member = members[memberIndex];
+
+      if (member) openBio(member);
+    });
+
+    searchInput.addEventListener("input", event => {
+      const query = event.target.value.trim().toLowerCase();
+
+      const filtered = members.filter(member =>
+        member.name.toLowerCase().includes(query) ||
+        member.matric.toLowerCase().includes(query) ||
+        member.role.toLowerCase().includes(query)
+      );
+
+      renderMembers(filtered);
+    });
+
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    menuToggle.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+      menuToggle.textContent = isOpen ? "✕" : "☰";
+    });
+
+    navLinks.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.textContent = "☰";
+      });
+    });
+
+    function observeReveals() {
+      const items = document.querySelectorAll(".reveal:not(.visible)");
+
+      if (!("IntersectionObserver" in window)) {
+        items.forEach(item => item.classList.add("visible"));
+        return;
+      }
+
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.08
+      });
+
+      items.forEach(item => observer.observe(item));
+    }
+
+    renderMembers(members);
+    observeReveals();
+
+    const sections = document.querySelectorAll("main section[id]");
+    const navAnchors = document.querySelectorAll(".nav-links a");
+
+    const sectionObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navAnchors.forEach(anchor => {
+            anchor.classList.toggle(
+              "active",
+              anchor.getAttribute("href") === `#${entry.target.id}`
+            );
+          });
+        }
+      });
+    }, {
+      rootMargin: "-35% 0px -55% 0px"
+    });
+
+    sections.forEach(section => sectionObserver.observe(section));
+  </script>
+
+</body>
+</html>

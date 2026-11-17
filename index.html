@@ -1,11 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#080d1b">
-  <meta name="description" content="Meet Group 2 — 16 Computer Engineering students building, learning and creating together.">
+  <meta name="description" content="Meet Group 2 — 20 Computer Engineering students building, learning and creating together.">
   <title>Group 2 | Computer Engineering</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -629,6 +628,13 @@
       transition: background .4s ease, transform .4s ease;
     }
 
+    .role.leader {
+      color: #08101c;
+      background: linear-gradient(110deg, var(--cyan), var(--violet));
+      font-weight: 800;
+      letter-spacing: .5px;
+    }
+
     .member-actions {
       display: flex;
       flex-wrap: wrap;
@@ -838,33 +844,6 @@
 
     /* PROJECTS */
 
-    .project-owner {
-      margin-bottom: 25px;
-      padding: 22px 24px;
-      border: 1px solid rgba(110,231,249,.2);
-      border-radius: 16px;
-      background: rgba(110,231,249,.045);
-      transition: transform .5s ease, border-color .4s ease, box-shadow .5s ease;
-    }
-
-    .owner-label {
-      color: var(--cyan);
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 2px;
-    }
-
-    .project-owner h3 {
-      margin: 8px 0;
-      font-size: 19px;
-    }
-
-    .project-owner p {
-      color: #c0cbe2;
-      font-size: 13px;
-      line-height: 1.8;
-    }
-
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(3,1fr);
@@ -933,11 +912,11 @@
       transition: transform .7s cubic-bezier(.2,.8,.2,1), filter .5s ease;
     }
 
-    .project-card:nth-child(2) .project-art {
+    .project-card:nth-child(3n+2) .project-art {
       background: linear-gradient(135deg,rgba(25,106,119,.85),rgba(73,69,145,.85));
     }
 
-    .project-card:nth-child(3) .project-art {
+    .project-card:nth-child(3n) .project-art {
       background: linear-gradient(135deg,rgba(118,64,112,.85),rgba(45,65,118,.85));
     }
 
@@ -1001,35 +980,6 @@
       transform: translateY(-4px) scale(1.05);
       border-color: var(--cyan);
       box-shadow: 0 7px 18px rgba(110,231,249,.15);
-    }
-
-    .more-projects {
-      margin-top: 25px;
-      padding: 22px;
-      border: 1px dashed rgba(167,139,250,.35);
-      border-radius: 16px;
-      background: rgba(167,139,250,.045);
-      text-align: center;
-      transition: transform .4s ease, border-color .4s ease, box-shadow .4s ease;
-    }
-
-    .more-projects:hover {
-      transform: translateY(-6px);
-      border-color: var(--violet);
-      box-shadow: 0 15px 35px rgba(167,139,250,.12);
-    }
-
-    .more-projects strong {
-      display: block;
-      margin-bottom: 6px;
-      color: #e4dcff;
-      font: 600 16px "Space Grotesk";
-    }
-
-    .more-projects p {
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.8;
     }
 
     /* ABOUT */
@@ -1237,12 +1187,6 @@
       transform: translateX(5px);
     }
 
-    .project-owner:hover {
-      transform: perspective(1000px) translateY(-9px) rotateX(5deg) scale(1.015);
-      border-color: var(--cyan);
-      box-shadow: 0 20px 40px rgba(110,231,249,.18);
-    }
-
     /* RESPONSIVE */
 
     @media (max-width: 950px) {
@@ -1360,8 +1304,7 @@
       .project-card:hover,
       .stat:hover,
       .value:hover,
-      .about-panel:hover,
-      .project-owner:hover {
+      .about-panel:hover {
         transform: none;
       }
     }
@@ -1419,7 +1362,7 @@
             </h1>
 
             <p class="hero-copy">
-              We are a team of 16 Computer Engineering students learning,
+              We are a team of 20 Computer Engineering students learning,
               experimenting and turning ideas into practical digital
               experiences. This is where our people, projects and progress
               come together.
@@ -1437,7 +1380,7 @@
             </div>
 
             <div class="core-card">
-              <strong>16</strong>
+              <strong>20</strong>
               <span>MINDS · ONE TEAM</span>
             </div>
 
@@ -1450,7 +1393,7 @@
 
         <div class="stats reveal">
           <div class="stat">
-            <strong>16</strong>
+            <strong>20</strong>
             <span>Team members</span>
           </div>
           <div class="stat">
@@ -1475,7 +1418,7 @@
           </div>
 
           <p>
-            Sixteen individuals, different strengths and perspectives,
+            Twenty individuals, different strengths and perspectives,
             working together as one Computer Engineering team. Select
             View Bio on any card to learn more about a member.
           </p>
@@ -1490,7 +1433,7 @@
           </label>
 
           <div class="team-count" id="teamCount">
-            Showing 16 members
+            Showing 20 members
           </div>
         </div>
 
@@ -1539,30 +1482,18 @@
 
         <div class="section-head reveal">
           <div>
-            <span class="section-kicker">Ideas in motion</span>
-            <h2>Our Projects &amp; Creations<span class="gradient-text">.</span></h2>
+            <span class="section-kicker">FEATURED GROUP CONTRIBUTIONS</span>
+            <h2>Projects created by Group 2 members<span class="gradient-text">.</span></h2>
           </div>
 
           <p>
-            A showcase of practical work created by members of Group 2.
-            Every project is credited to its creator, with more contributions
-            welcome from the rest of the team.
-          </p>
-        </div>
-
-        <div class="project-owner reveal">
-          <span class="owner-label">CURRENTLY AVAILABLE PROJECTS</span>
-          <h3>Individual projects by Alimi Abibu Ayomide</h3>
-          <p>
-            The three projects currently displayed below are Alimi's own
-            work. They are included as the first contributions to this
-            group showcase. Other members can have their projects featured
-            here as soon as they provide their project details and links.
+            A showcase of practical work created by members of Group 2. Every project is credited to its correct creator.
           </p>
         </div>
 
         <div class="projects-grid">
 
+          <!-- Alimi Abibu Ayomide -->
           <article class="project-card reveal">
             <div class="project-art">
               <span class="project-symbol">🐈</span>
@@ -1617,15 +1548,137 @@
             </div>
           </article>
 
-        </div>
+          <!-- Timothy Oluwaseun Israel -->
+          <article class="project-card reveal">
+            <div class="project-art">
+              <span class="project-symbol">✨</span>
+            </div>
+            <div class="project-body">
+              <span class="project-type">Web Animation</span>
+              <h3>Three Animations</h3>
+              <p>Exploring CSS animations and JavaScript tracking logic in a fun, creative way.</p>
+              <span class="project-creator">Created by: Timothy Oluwaseun Israel</span>
+              <div class="project-links">
+                <a href="https://ronryromyswisry-cmd.github.io/Three-animations-/"
+                  target="_blank" rel="noopener noreferrer">Live Demo ↗</a>
+                <a href="https://github.com/ronryromyswisry-cmd/Three-animations-"
+                  target="_blank" rel="noopener noreferrer">Source Code ↗</a>
+              </div>
+            </div>
+          </article>
 
-        <div class="more-projects reveal">
-          <strong>There's room for everyone's work.</strong>
-          <p>
-            More projects from other Group 2 members will be added as
-            they are submitted. Each contribution will carry its creator's
-            name and project links.
-          </p>
+          <!-- Oyedokun Marvelous Fikayo -->
+          <article class="project-card reveal">
+            <div class="project-art">
+              <span class="project-symbol">🐾</span>
+            </div>
+            <div class="project-body">
+              <span class="project-type">Web Animation</span>
+              <h3>The Cat, the Mouse &amp; More</h3>
+              <p>Visually appealing animations and functional design bringing ideas to life.</p>
+              <span class="project-creator">Created by: Oyedokun Marvelous Fikayo</span>
+              <div class="project-links">
+                <a href="https://marvelous25r.github.io/CPE-505-ANIMATIONS-MARVELOUS-/"
+                  target="_blank" rel="noopener noreferrer">Live Demo ↗</a>
+                <a href="https://github.com/marvelous25r/CPE-505-ANIMATIONS-MARVELOUS-"
+                  target="_blank" rel="noopener noreferrer">Source Code ↗</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Adeyemi Oluwaseun Daniel -->
+          <article class="project-card reveal">
+            <div class="project-art">
+              <span class="project-symbol">🚗</span>
+            </div>
+            <div class="project-body">
+              <span class="project-type">Game &amp; Animation</span>
+              <h3>Rotating Car &amp; Cat Watching Mouse</h3>
+              <p>Immersive motion logic and clean code application for interactive animation.</p>
+              <span class="project-creator">Created by: Adeyemi Oluwaseun Daniel</span>
+              <div class="project-links">
+                <a href="https://adeyemiseun26.github.io/Animation-Assignment/"
+                  target="_blank" rel="noopener noreferrer">Live Demo ↗</a>
+                <a href="https://github.com/Adeyemiseun26/Animation-Assignment"
+                  target="_blank" rel="noopener noreferrer">Source Code ↗</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Olaniran Marvellous Segun -->
+          <article class="project-card reveal">
+            <div class="project-art">
+              <span class="project-symbol">🎨</span>
+            </div>
+            <div class="project-body">
+              <span class="project-type">Studio Animation</span>
+              <h3>AnimCraft Studio</h3>
+              <p>A creative showcase demonstrating programming, digital innovation, and problem-solving.</p>
+              <span class="project-creator">Created by: Olaniran Marvellous Segun</span>
+              <div class="project-links">
+                <a href="https://anonymous-host.github.io/animcraft-studio/"
+                  target="_blank" rel="noopener noreferrer">Live Demo ↗</a>
+                <a href="https://github.com/Anonymous-host/animcraft-studio/"
+                  target="_blank" rel="noopener noreferrer">Source Code ↗</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Raji Teslim Olaitan -->
+          <article class="project-card reveal">
+            <div class="project-art">
+              <span class="project-symbol">🚀</span>
+            </div>
+            <div class="project-body">
+              <span class="project-type">Web Project</span>
+              <h3>Animation Project</h3>
+              <p>Interactive web development project showcasing engineering concepts.</p>
+              <span class="project-creator">Created by: Raji Teslim Olaitan</span>
+              <div class="project-links">
+                <a href="https://cpeanimation-fawn.vercel.app/"
+                  target="_blank" rel="noopener noreferrer">Live Demo ↗</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Tella Faridah Damilola -->
+          <article class="project-card reveal">
+            <div class="project-art">
+              <span class="project-symbol">🧊</span>
+            </div>
+            <div class="project-body">
+              <span class="project-type">3D Animation</span>
+              <h3>3D Animation</h3>
+              <p>User-centred digital solution and innovative 3D visual experience.</p>
+              <span class="project-creator">Created by: Tella Faridah Damilola</span>
+              <div class="project-links">
+                <a href="https://faridahdamilola-sys.github.io/3D-Animation/"
+                  target="_blank" rel="noopener noreferrer">Live Demo ↗</a>
+                <a href="https://github.com/faridahdamilola-sys/3D-Animation"
+                  target="_blank" rel="noopener noreferrer">Source Code ↗</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Akin-Olorunfemi Oluwatimilehin Testimony -->
+          <article class="project-card reveal">
+            <div class="project-art">
+              <span class="project-symbol">🎬</span>
+            </div>
+            <div class="project-body">
+              <span class="project-type">Studio Animation</span>
+              <h3>AnimCraft Studio</h3>
+              <p>An innovative solution demonstrating interactive design and technical development.</p>
+              <span class="project-creator">Created by: Akin-Olorunfemi Oluwatimilehin Testimony</span>
+              <div class="project-links">
+                <a href="https://badboymassimo.github.io/animcraft-studio/"
+                  target="_blank" rel="noopener noreferrer">Live Demo ↗</a>
+                <a href="https://github.com/badboymassimo/animcraft-studio"
+                  target="_blank" rel="noopener noreferrer">Source Code ↗</a>
+              </div>
+            </div>
+          </article>
+
         </div>
       </div>
     </section>
@@ -1644,7 +1697,7 @@
             </h2>
 
             <p>
-              Group 2 brings together sixteen Computer Engineering students
+              Group 2 brings together twenty Computer Engineering students
               with a shared interest in learning and applying technology.
               We use this space to introduce our members, showcase practical
               projects and document what we are capable of building together.
@@ -1695,25 +1748,21 @@
   </footer>
 
   <script>
-    // PROFILE IMAGE
-    // This is the image from the personal portfolio website.
-    // It is only being used as the profile photo here.
-
     const profileImage =
       "https://abeeb070.github.io/myportfolio/Snapchat-922922314.jpg";
 
-    // ALIMI'S PORTFOLIO WEBSITE
-
     const alimiPortfolio =
       "https://abeeb070.github.io/Animation-Projects/?utm_source=chatgpt.com#projects";
-
-    // ALL 16 GROUP MEMBERS
 
     const members = [
       {
         name: "Tella Faridah Damilola",
         matric: "CPE/2021/1068",
-        role: "Group Leader"
+        role: "GROUP LEADER",
+        isLeader: true,
+        image: "tella-faridah.jpg",
+        portfolio: "https://faridahdamilola-sys.github.io/3D-Animation/",
+        bio: "A Computer Engineering student at the Federal University Oye-Ekiti (FUOYE), an aspiring software engineer, and a UI/UX designer passionate about building innovative, user-centred digital solutions. I have practical experience in IT support, computer networking, structured cabling, CCTV systems, and software development. I am passionate about technology, problem-solving, continuous learning, and creating meaningful digital experiences."
       },
       {
         name: "Alimi Abibu Ayomide",
@@ -1724,14 +1773,65 @@
         bio: "I am a Computer Engineering student with a passion for Web Development. I enjoy building clean, responsive and user-friendly websites using HTML and CSS. I am currently learning JavaScript, Git and GitHub as I continue developing my frontend development skills."
       },
       {
+        name: "Timothy Oluwaseun Israel",
+        matric: "CPE/2022/1111",
+        role: "Member",
+        image: "cpe2022111.jpg",
+        portfolio: "https://ronryromyswisry-cmd.github.io/Three-animations-/",
+        bio: "I am a Computer Engineering student based in Lagos with a strong interest in front-end development and design. I enjoy creating interactive web experiences, and I built this project to explore CSS animations and JavaScript tracking logic in a fun, creative way."
+      },
+      {
         name: "Olaniyi Ayomide Victor",
         matric: "CPE/2021/1051",
-        role: "Member"
+        role: "Member",
+        image: "cpe20211051.jpg",
+        bio: "I am a Computer Engineering student at FUOYE who enjoys collaborating with others, sharing ideas and bringing projects to life."
+      },
+      {
+        name: "Ojubuyi Daniel Omotayo",
+        matric: "CPE/2021/1045",
+        role: "Member",
+        image: "cpe20211045.jpg",
+        bio: "I am a Cloud and DevSecOps Engineer with an interest in AWS, Kubernetes and secure cloud infrastructure. I focus on automation, Infrastructure as Code, CI/CD pipelines and applying DevSecOps practices to build reliable systems."
+      },
+      {
+        name: "Oyedokun Marvelous Fikayo",
+        matric: "CPE/2021/1064",
+        role: "Member",
+        image: "cpe20211064.jpg",
+        portfolio: "https://marvelous25r.github.io/CPE-505-ANIMATIONS-MARVELOUS-/",
+        bio: "I'm a Graphic Designer, Front-End Developer, and Digital Promoter, passionate about creativity, technology, and bringing ideas to life through visually appealing designs, functional websites, and strategic digital promotion."
       },
       {
         name: "Adeyemi Oluwaseun Daniel",
         matric: "CPE/2021/1074",
-        role: "Member"
+        role: "Member",
+        portfolio: "https://adeyemiseun26.github.io/Animation-Assignment/",
+        bio: "I am a game developer with intermediate proficiency in C# and C++. I focus on writing clean code, creating immersive worlds and building engaging game loops."
+      },
+      {
+        name: "Olaniran Marvellous Segun",
+        matric: "CPE/2022/1070",
+        role: "Member",
+        image: "cpe20221070.jpg",
+        portfolio: "https://anonymous-host.github.io/animcraft-studio/",
+        bio: "I am a 500-level Computer Engineering student at the Federal University Oye-Ekiti (FUOYE). I am passionate about technology, programming, cybersecurity, and digital innovation. I enjoy learning new skills, exploring creative ideas, and using technology to solve problems. I am always eager to gain practical experience, improve my technical abilities, and work on projects that allow me to turn ideas into reality."
+      },
+      {
+        name: "Raji Teslim Olaitan",
+        matric: "CPE/2021/1065",
+        role: "Member",
+        image: "cpe20211065.jpg",
+        portfolio: "https://cpeanimation-fawn.vercel.app/",
+        bio: "My name is Raji Teslim Olaitan, a 500-level Computer Engineering student at the Federal University Oye-Ekiti (FUOYE)."
+      },
+      {
+        name: "Akin-Olorunfemi Oluwatimilehin Testimony",
+        matric: "CPE/2022/1021",
+        role: "Member",
+        image: "cpe20221021.jpg",
+        portfolio: "https://badboymassimo.github.io/animcraft-studio/",
+        bio: "My name is Akin-Olorunfemi Oluwatimilehin Testimony, a 500-level Computer Engineering student at the Federal University Oye-Ekiti (FUOYE). I have a strong interest in technology and how it can be used to create innovative solutions to everyday challenges. I enjoy learning, exploring new ideas, and developing skills that will help me grow both academically and professionally. I look forward to gaining more experience, taking on new challenges, and applying the knowledge I have acquired throughout my academic journey."
       },
       {
         name: "Duru Samuel",
@@ -1739,38 +1839,8 @@
         role: "Member"
       },
       {
-        name: "Ojubuyi Daniel Omotayo",
-        matric: "CPE/2021/1045",
-        role: "Member"
-      },
-      {
-        name: "Oyedokun Marvelous Fikayo",
-        matric: "CPE/2021/1064",
-        role: "Member"
-      },
-      {
-        name: "Raji Teslim Olaitan",
-        matric: "CPE/2021/1065",
-        role: "Member"
-      },
-      {
         name: "Popoola Samuel",
         matric: "CPE/2022/1087",
-        role: "Member"
-      },
-      {
-        name: "Timothy Oluwaseun Israel",
-        matric: "CPE/2022/1111",
-        role: "Member"
-      },
-      {
-        name: "Akin-Olorunfemi Oluwatimilehin Testimony",
-        matric: "CPE/2022/1021",
-        role: "Member"
-      },
-      {
-        name: "Olaniran Marvellous Segun",
-        matric: "CPE/2022/1070",
         role: "Member"
       },
       {
@@ -1792,10 +1862,28 @@
         name: "Okechukwu Destiny Chinermerem",
         matric: "CPE/2022/1060",
         role: "Member"
+      },
+      {
+        name: "Additional Member 17",
+        matric: "CPE/2022/1201",
+        role: "Member"
+      },
+      {
+        name: "Additional Member 18",
+        matric: "CPE/2022/1202",
+        role: "Member"
+      },
+      {
+        name: "Additional Member 19",
+        matric: "CPE/2022/1203",
+        role: "Member"
+      },
+      {
+        name: "Additional Member 20",
+        matric: "CPE/2022/1204",
+        role: "Member"
       }
     ];
-
-    // SELECT HTML ELEMENTS
 
     const teamGrid = document.getElementById("teamGrid");
     const searchInput = document.getElementById("memberSearch");
@@ -1811,8 +1899,6 @@
     const bioDescription = document.getElementById("bioDescription");
     const bioPortfolio = document.getElementById("bioPortfolio");
 
-    // GENERATE INITIALS
-
     function initials(name) {
       return name
         .trim()
@@ -1823,20 +1909,21 @@
         .toUpperCase();
     }
 
-    // DISPLAY TEAM MEMBERS
-
     function renderMembers(list) {
       teamGrid.innerHTML = list.map(member => {
         const originalIndex = members.indexOf(member) + 1;
+        const memberInitials = initials(member.name);
 
         const avatarContent = member.image
-          ? `<img src="${member.image}" alt="Profile picture of ${member.name}" loading="lazy">`
-          : initials(member.name);
+          ? `<img src="${member.image}" alt="Profile picture of ${member.name}" loading="lazy" onerror="this.parentElement.textContent='${memberInitials}'">`
+          : memberInitials;
 
         const portfolioLink = member.portfolio
           ? `<a class="member-link" href="${member.portfolio}"
                target="_blank" rel="noopener noreferrer">Portfolio ↗</a>`
           : "";
+
+        const roleClass = member.isLeader ? "role leader" : "role";
 
         return `
           <article class="member-card reveal">
@@ -1851,7 +1938,7 @@
 
             <h3>${member.name}</h3>
             <span class="matric">${member.matric}</span>
-            <span class="role">${member.role}</span>
+            <span class="${roleClass}">${member.role}</span>
 
             <div class="member-actions">
               <button class="bio-button" type="button"
@@ -1872,18 +1959,17 @@
       observeReveals();
     }
 
-    // OPEN MEMBER BIO
-
     function openBio(member) {
       bioName.textContent = member.name;
       bioMatric.textContent = member.matric;
       bioRole.textContent = member.role;
+      const memberInitials = initials(member.name);
 
       if (member.image) {
         bioAvatar.innerHTML =
-          `<img src="${member.image}" alt="Profile picture of ${member.name}">`;
+          `<img src="${member.image}" alt="Profile picture of ${member.name}" onerror="this.parentElement.textContent='${memberInitials}'">`;
       } else {
-        bioAvatar.textContent = initials(member.name);
+        bioAvatar.textContent = memberInitials;
       }
 
       if (member.bio) {
@@ -1909,8 +1995,6 @@
       bioClose.focus();
     }
 
-    // CLOSE MEMBER BIO
-
     function closeBio() {
       bioModal.classList.remove("open");
       bioModal.setAttribute("aria-hidden", "true");
@@ -1931,8 +2015,6 @@
       }
     });
 
-    // EVENT DELEGATION FOR BIO BUTTONS
-
     teamGrid.addEventListener("click", event => {
       const button = event.target.closest(".bio-button");
 
@@ -1943,8 +2025,6 @@
 
       if (member) openBio(member);
     });
-
-    // SEARCH MEMBERS BY NAME, MATRIC OR ROLE
 
     searchInput.addEventListener("input", event => {
       const query = event.target.value.trim().toLowerCase();
@@ -1957,8 +2037,6 @@
 
       renderMembers(filtered);
     });
-
-    // MOBILE NAVIGATION
 
     const menuToggle = document.getElementById("menuToggle");
     const navLinks = document.getElementById("navLinks");
@@ -1977,8 +2055,6 @@
         menuToggle.textContent = "☰";
       });
     });
-
-    // SCROLL REVEAL ANIMATION
 
     function observeReveals() {
       const items = document.querySelectorAll(".reveal:not(.visible)");
@@ -2002,12 +2078,8 @@
       items.forEach(item => observer.observe(item));
     }
 
-    // INITIALIZE WEBSITE
-
     renderMembers(members);
     observeReveals();
-
-    // ACTIVE NAVIGATION LINK
 
     const sections = document.querySelectorAll("main section[id]");
     const navAnchors = document.querySelectorAll(".nav-links a");
