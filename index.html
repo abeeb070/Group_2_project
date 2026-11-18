@@ -824,9 +824,15 @@
       line-height: 1.8;
     }
 
+    .bio-links-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
     .bio-portfolio {
       display: inline-flex;
-      margin-top: 20px;
       padding: 10px 14px;
       border: 1px solid rgba(110,231,249,.3);
       border-radius: 10px;
@@ -839,6 +845,25 @@
     .bio-portfolio:hover {
       color: #08101c;
       background: var(--cyan);
+      transform: translateY(-3px);
+    }
+
+    .bio-custom-link {
+      display: inline-flex;
+      padding: 10px 14px;
+      border: 1px solid rgba(167,139,250,.4);
+      border-radius: 10px;
+      color: #b8a2ff;
+      background: rgba(167,139,250,.08);
+      font-size: 12px;
+      font-weight: 700;
+      transition: .3s ease;
+    }
+
+    .bio-custom-link:hover {
+      color: #08101c;
+      background: var(--violet);
+      border-color: var(--violet);
       transform: translateY(-3px);
     }
 
@@ -1469,9 +1494,15 @@
         <div class="bio-heading">About this member</div>
         <p class="bio-description" id="bioDescription"></p>
 
-        <a class="bio-portfolio" id="bioPortfolio"
-          href="#" target="_blank" rel="noopener noreferrer"
-          hidden>Visit Portfolio ↗</a>
+        <div class="bio-links-group">
+          <a class="bio-portfolio" id="bioPortfolio"
+            href="#" target="_blank" rel="noopener noreferrer"
+            hidden>Visit GitHub Profile ↗</a>
+
+          <a class="bio-custom-link" id="bioCustomLink"
+            href="#" target="_blank" rel="noopener noreferrer"
+            hidden>View Animation Project ↗</a>
+        </div>
       </div>
     </div>
 
@@ -1905,7 +1936,8 @@
         matric: "CPE/2021/1045",
         role: "Member",
         image: "cpe20211045.jpg",
-        portfolio: "https://cpe505animation.vercel.app/",
+        portfolio: "https://github.com/Dee-Tech001",
+        customProjectLink: "https://cpe505animation.vercel.app/",
         bio: "I am a Cloud and DevSecOps Engineer with an interest in AWS, Kubernetes and secure cloud infrastructure. I focus on automation, Infrastructure as Code, CI/CD pipelines and applying DevSecOps practices to build reliable systems. Connect with me on LinkedIn: https://www.linkedin.com/in/ojubuyi-daniel-76061b27b"
       },
       {
@@ -1998,6 +2030,7 @@
     const bioRole = document.getElementById("bioRole");
     const bioDescription = document.getElementById("bioDescription");
     const bioPortfolio = document.getElementById("bioPortfolio");
+    const bioCustomLink = document.getElementById("bioCustomLink");
 
     function initials(name) {
       return name
@@ -2087,6 +2120,14 @@
       } else {
         bioPortfolio.hidden = true;
         bioPortfolio.removeAttribute("href");
+      }
+
+      if (member.customProjectLink) {
+        bioCustomLink.href = member.customProjectLink;
+        bioCustomLink.hidden = false;
+      } else {
+        bioCustomLink.hidden = true;
+        bioCustomLink.removeAttribute("href");
       }
 
       bioModal.classList.add("open");
